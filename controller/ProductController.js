@@ -4,7 +4,7 @@ import fs from 'fs';
 import { error } from "console";
 
 
-
+const PUBLIC_DOMAIN = "image-uploader-backend-production-10f3.up.railway.app";
 
 export const getProduct = async (req, res) => {
     try {
@@ -39,7 +39,7 @@ export const saveProduct = (req, res) => {
     const dateNow = Math.round(Date.now());
     const fileName = dateNow + ext;
     // const fileName = file.md5 + ext;
-    const url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
+    const url = `https://${PUBLIC_DOMAIN}/images/${fileName}`;
     const allowedType = ['.png', '.jpg', '.jpeg'];
 
     if (!allowedType.includes(ext.toLowerCase())) return res.json({ msg: "Extension is not allowed. only jpg and jepg and png images are allowed" });
@@ -77,7 +77,7 @@ export const updateProduct = async (req, res) => {
 
     if (req.files === null) {
         fileName = product.image
-        url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
+        url = `https://${PUBLIC_DOMAIN}/images/${fileName}`;
         try {
             await Product.update({ name: name, image: fileName, url: url }, {
                 where: {
@@ -96,7 +96,7 @@ export const updateProduct = async (req, res) => {
         const dateNow = Math.round(Date.now());
         fileName = dateNow + ext;
         // fileName = file.md5 + ext;
-        url = `${req.protocol}://${req.get("host")}/images/${fileName}`;
+        url = `https://${PUBLIC_DOMAIN}/images/${fileName}`;
         const allowedType = ['.png', '.jpg', '.jpeg'];
         if (!allowedType.includes(ext.toLowerCase())) return res.json({ msg: "Extension is not allowed. only jpg and jepg and png images are allowed" });
         if (fileSize > 5000000) return res.json({ msg: "The image size is larger than 5 MB." });
