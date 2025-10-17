@@ -15,5 +15,5 @@ app.use(router)
 
 
 
-app.listen(5070 , console.log("server is running"));
+app.listen(process.env.PORT , console.log("server is running"));
 
