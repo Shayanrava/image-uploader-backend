@@ -8,7 +8,8 @@ const Product = db.define("products", {
     image: DataTypes.STRING,
     url: DataTypes.STRING
 }, {
-    freezeTableName: true
+    freezeTableName: true,
+    timestamps: false
 });
 
 // (async () => {
